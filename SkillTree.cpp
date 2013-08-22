@@ -1,6 +1,8 @@
 #include "SkillTree.h"
+#include <functional>
 char* SkillTree::SearchKey = { 0 };
 Skill SkillTree::SkillPointer;
+
 
 SkillTree::SkillTree(void) : Title("Default title")
 {	
@@ -32,14 +34,18 @@ bool SkillTree::AddSkill(std::string name, std::string description, int level, s
 Skill* SkillTree::FindSkill(char* name)
 {
 	Skill* Fake = nullptr;
+	//Skill copyObj;
 	SearchKey = name;
+	
 	InorderTraverse(GetEntry);
+	
+	//return Fake;
 	return &SkillPointer;
 }
 
 void SkillTree::GetEntry(Skill& skillObject)
 {
-
+	Skill* skilltemp = nullptr;
 	if (!(strcmp(skillObject.GetName().c_str(),"Reading"))) {
 		SkillPointer = skillObject;
 	}

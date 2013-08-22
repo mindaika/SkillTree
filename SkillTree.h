@@ -14,7 +14,7 @@ protected:
 	// Assistant methods
 
 	static void DisplayAssistant(Skill&);
-	static void FindSkillAssistant(Skill&);
+	void FindSkillAssistant(Skill&);
 
 public:
 	// Default constructor; typically not used
@@ -54,5 +54,6 @@ public:
 	void Display(std::ostream&);
 
 	static void GetEntry(Skill&);
+	
 };
 #endif
