@@ -2,6 +2,7 @@
 #define _SKILL_TREE
 #include "Skill.h"
 #include "Tree.h"
+#include "SkillManage.h"
 #include <memory>
 class SkillTree : public Tree<Skill>
 {
@@ -9,7 +10,7 @@ private:
 	// Title of the object; used to idenify instances of SkillTree objects
 	std::string Title;
 	static char* SearchKey;
-	static Skill SkillPointer;
+	static SkillManager PointedSkill;
 protected:
 	// Assistant methods
 
@@ -56,4 +57,5 @@ public:
 	static void GetEntry(Skill&);
 	
 };
+
 #endif

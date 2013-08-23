@@ -80,9 +80,5 @@ int main() {
 		cout << "Memory leaks!" << endl;
 	}
 #endif
-	/* Testing area; delete before return */
-	//student.PostorderTraverse(student.FindSkill("Test"));
-	cin.get();
-	/* Delete Above */
 	return 0;
 }

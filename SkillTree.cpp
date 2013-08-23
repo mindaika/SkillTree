@@ -1,12 +1,13 @@
 #include "SkillTree.h"
 #include <functional>
 char* SkillTree::SearchKey = { 0 };
-Skill SkillTree::SkillPointer;
+
+SkillManager SkillTree::PointedSkill = nullptr;
+std::auto_ptr<Skill> skillobj( new Skill );
 
 
 SkillTree::SkillTree(void) : Title("Default title")
 {	
-	int* Leaker = new int;
 }
 
 
@@ -17,6 +18,8 @@ SkillTree::SkillTree(std::string title) : Title(title)
 
 SkillTree::~SkillTree(void)
 {
+	skillobj.release();
+	PointedSkill.Kill();
 }
 
 bool SkillTree::AddSkill(std::string name, std::string description, int level)
@@ -36,13 +39,14 @@ Skill* SkillTree::FindSkill(char* name)
 {
 	SearchKey = name;
 	InorderTraverse(GetEntry);
-	return &SkillPointer;
+	return PointedSkill.instance();
 }
 
 void SkillTree::GetEntry(Skill& skillObject)
 {
 	if (!(strcmp(skillObject.GetName().c_str(),"Reading"))) {
-		SkillPointer = skillObject;
+		*skillobj = skillObject; 
+		PointedSkill.SkillSet(skillobj.get());
 	}
 }
 
@@ -68,3 +72,6 @@ void SkillTree::DisplayAssistant(Skill& target)
 		<< " [Lvl: " << target.GetLevel()
 		<< "]" << std::endl;
 }
+
+
+
